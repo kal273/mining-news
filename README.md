@@ -1,2 +1,2 @@
-# Django Backend
-This folder contains the Django backend.
+# React Frontend
+This folder contains the React frontend.

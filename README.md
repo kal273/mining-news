@@ -1,2 +1,2 @@
-# React Frontend
-This folder contains the React frontend.
+# Flutter Mobile App
+This folder contains the Flutter app.

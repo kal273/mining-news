@@ -1,17 +1,18 @@
-from django.contrib.auth import get_user_model
-from django.db import IntegrityError
+import os
+import django
+import logging
 
-User = get_user_model()
+logging.basicConfig(level=logging.INFO)
+print("Setting up Django...")
 
-username = "admin"
-email = "admin@example.com"
-password = "admin123"
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
+django.setup()
 
-if not User.objects.filter(username=username).exists():
-    try:
-        User.objects.create_superuser(username=username, email=email, password=password)
-        print(f"Superuser '{username}' created successfully.")
-    except IntegrityError:
-        print(f"User '{username}' already exists.")
+from django.contrib.auth.models import User
+
+if not User.objects.filter(username='admin').exists():
+    print("Creating superuser 'admin'...")
+    User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
+    print("Superuser created successfully.")
 else:
-    print(f"Superuser '{username}' already exists.")
+    print("Superuser 'admin' already exists.")

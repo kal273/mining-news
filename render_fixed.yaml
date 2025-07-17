@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mining-news
+    env: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn mining_news.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: mining_news.settings
+      - key: PYTHON_VERSION
+        value: 3.10

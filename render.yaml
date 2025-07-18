@@ -1,12 +1,17 @@
 services:
   - type: web
-    name: mining-news-backend
+    name: mining-news-api
     env: python
-    buildCommand: ""
+    repo: https://github.com/kal273/mining-news
+    branch: main
+    buildCommand: pip install -r requirements.txt
     startCommand: gunicorn mining_news.wsgi:application
-    preDeployCommand: python setup_admin.py
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: mining_news.settings
       - key: PYTHON_VERSION
         value: 3.10
+    buildFilter:
+      paths:
+        - mining_news/**
+    rootDir: mining_news
